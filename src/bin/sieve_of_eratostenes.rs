@@ -62,5 +62,4 @@ fn main() {
         println!("prime: {}", p)
     }
     println!("total number of primes till {}: {}", limit, primes.len())
-
 }

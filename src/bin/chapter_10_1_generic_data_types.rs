@@ -2,7 +2,7 @@
 
 use std::env;
 
-// Generics are abstract stand-ins for concrete types or other properties
+// => Generics are abstract stand-ins for concrete types or other properties
 
 // [i32] specific function
 fn largest_basic(list: &[i32]) -> i32 {
@@ -13,6 +13,7 @@ fn largest_basic(list: &[i32]) -> i32 {
     // we're pattern matching and destructuring each &i32 that the for loop gets
     // so that item will be an i32 inside the loop body.
     // We'll cover pattern matching in detail in Chapter 18.
+
     for &item in list {
         if item > largest {
             largest = item;
@@ -29,6 +30,8 @@ fn print_largest_basic() {
 }
 
 
+
+
 // Generic Data Types
 //
 // We can use generics to create definitions for items like function signatures or structs,
@@ -42,8 +45,7 @@ fn print_largest_basic() {
 // First, please see the two similar functions in listing 10-4 in https://doc.rust-lang.org/book/ch10-01-syntax.html#in-function-definitions
 
 
-// First try to make it generic: does not compile this way -> see compiler output
-
+// The first try, to make it generic does not compile this way -> see compiler output
 /*
 fn largest<T>(list: &[T]) -> T {
 // We read this definition as: the function largest is generic over some type T.
@@ -65,7 +67,10 @@ fn largest<T>(list: &[T]) -> T {
 // fn largest<T>(list: &[T])
 
 
-// By the way, here is how the completely fixed version looks like:
+
+
+
+// By the way, here is how the completely fixed version looks like (comes later in the book):
 fn largest<T: std::cmp::PartialOrd + Copy>(list: &[T]) -> T {
     let mut largest = list[0];
     for &item in list {
@@ -81,6 +86,12 @@ fn print_largest_generic() {
     let result = largest(&number_list);
     println!("largest number of {:?} is {:?}", number_list, result)
 }
+
+
+
+
+
+
 
 
 // Generic Data Types
@@ -105,6 +116,8 @@ struct PointB<T, U> {
 // it could indicate that your code needs restructuring into smaller pieces.
 
 
+
+
 // Generic Data Types
 // => in Enum Definitions:
 
@@ -125,6 +138,11 @@ enum Result<T, E> {
     Ok(T),
     Err(E),
 }
+
+
+
+
+
 
 
 // Generic Data Types
@@ -157,6 +175,13 @@ impl Point<f32> {
 // and uses mathematical operations that are available only for floating point types.
 
 
+
+
+
+
+
+
+
 // Generic type parameters in a struct definition aren’t always the same
 // as those you use in that struct’s method signatures.
 // ...
@@ -172,6 +197,9 @@ impl<T, U> PointB<T, U> {
 // => Please get enlightened using description around Listing 10-11 in https://doc.rust-lang.org/book/ch10-01-syntax.html#in-method-definitions
 
 
+
+
+
 // Performance:
 // The good news is that Rust implements generics in such a way that your code
 // doesn’t run any slower using generic types than it would with concrete types.
@@ -180,6 +208,9 @@ impl<T, U> PointB<T, U> {
 // specific code by filling in the concrete types that are used when compiled.
 //
 // => more details: https://doc.rust-lang.org/book/ch10-01-syntax.html#performance-of-code-using-generics
+
+
+
 
 
 ///////////////// MAIN /////////////////

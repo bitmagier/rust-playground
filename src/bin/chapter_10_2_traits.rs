@@ -1,9 +1,11 @@
 #![allow(dead_code, unused)]
 
-// => A trait tells the Rust compiler about functionality a particular type has and can share with other types.
+// => A trait tells the Rust compiler about functionality a particular type has
+// and can share with other types.
 //
 // We can use traits to define shared behavior in an abstract way.
-// We can use trait bounds to specify that a generic type can be any type that has certain behavior
+// We can use trait bounds to specify that a generic type can be any type that
+// has certain behavior
 
 
 // Defining a Trait
@@ -50,6 +52,7 @@ impl Summary for NewsArticle {
 // This restriction is part of a property of programs called coherence,
 // and more specifically the orphan rule, so named because the parent type is not present.
 // This rule ensures that other people’s code can’t break your code and vice versa.
+
 
 
 // Default Implementations
@@ -142,7 +145,7 @@ fn some_function_b<T, U>(t: &T, u: &U) -> i32
 //   https://doc.rust-lang.org/book/ch10-02-traits.html#:~:text=We%E2%80%99ll%20cover%20how%20to%20write%20a%20function%20with%20this%20behavior%20in%20the%20%E2%80%9CUsing%20Trait%20Objects%20That%20Allow%20for%20Values%20of%20Different%20Types%E2%80%9D%20section%20of%20Chapter%2017.
 
 
-// Fixing the larget Function with Trait Bounds
+// Fixing the largest Function with Trait Bounds
 // see code in https://doc.rust-lang.org/book/ch10-02-traits.html#fixing-the-largest-function-with-trait-bounds
 
 

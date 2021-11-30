@@ -2,6 +2,9 @@
 
 use std::env;
 
+// Rust Chapter 10
+// Generic Data Types
+
 // => Generics are abstract stand-ins for concrete types or other properties
 
 // [i32] specific function
@@ -47,7 +50,7 @@ fn print_largest_basic() {
 
 // The first try, to make it generic does not compile this way -> see compiler output
 /*
-fn largest<T>(list: &[T]) -> T {
+fn largestX<T>(list: &[T]) -> T {
 // We read this definition as: the function largest is generic over some type T.
 // This function has one parameter named list, which is a slice of values of type T.
 // The largest function will return a value of the same type T.
@@ -157,6 +160,13 @@ impl<T> Point<T> {
         &self.x
     }
 }
+
+impl<T: Copy> Point<T> {
+    fn x_copy(&self) -> T {
+        self.x
+    }
+}
+
 // ^^^ Note that we have to declare T just after impl so we can use it to specify
 // that we’re implementing methods on the type Point<T>.
 // By declaring T as a generic type after impl, Rust can identify that
@@ -193,8 +203,7 @@ impl<T, U> PointB<T, U> {
         }
     }
 }
-// What for?
-// => Please get enlightened using description around Listing 10-11 in https://doc.rust-lang.org/book/ch10-01-syntax.html#in-method-definitions
+
 
 
 

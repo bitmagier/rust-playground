@@ -1,8 +1,5 @@
 use std::fmt;
 
-trait UniverseObject {
-    fn number_of_stars(&self) -> u128;
-}
 struct StarSystem {
     number_of_stars: u128,
 }

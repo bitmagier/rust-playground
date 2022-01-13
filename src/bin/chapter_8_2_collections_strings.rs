@@ -7,7 +7,7 @@
 /// when those bytes are interpreted as text.
 ///
 /// Rust has only one string type in the core language: string slice `str`  (`&str`).
-/// The standard library provided a String type, which is a growable, mutable owned UTF-8 encoded string type.
+/// The standard library provided a String type, which is a growable, mutable and owned UTF-8 encoded string type.
 /// When Rustaceans refer to “strings” in Rust, they usually mean the String and the string slice &str types, not just one of those types.
 ///
 /// More (owned and borrowed) variants for different encoding or in memory representations:
@@ -44,13 +44,24 @@ fn main() {
     let hello = String::from("Hola");
 
 
+
+
+
     // updating
     let mut s = String::from("foo");
     // append
     s.push_str("bar"); // <- parameter is a reference to a string slice - no ownership transfer
 
+
     // append a single character
     s.push('z');
+
+
+
+
+
+
+
 
 
     // combine two existing strings with the + operator
@@ -58,11 +69,12 @@ fn main() {
     let s2 = String::from("world!");
     let s3 = s1 + &s2; // note s1 has been moved here and can no longer be used
 
-    /// using add method ^^^ => `fn add(self, s: &str) -> String {`
+    /// ^^^ uses the add method => `fn add(self, s: &str) -> String {`
+
 
     /// Some magic involved here:
     ///
-    ///_From the rust book:_
+    ///_from the rust book:_
     /// First, s2 has an &, meaning that we’re adding a reference of the second string to the first string
     /// because of the s parameter in the add function: we can only add a &str to a String;
     /// we can’t add two String values together.
@@ -82,17 +94,29 @@ fn main() {
     /// In other words, it looks like it’s making a lot of copies but isn’t; the implementation is more efficient than copying.
 
 
-    // complex string concatenation
+
+
+    // doing complex string concatenation
     let s1 = String::from("tic");
     let s2 = String::from("tac");
     let s3 = String::from("toe");
-
     let s = s1 + "-" + &s2 + "-" + &s3;
+
 
     let s1 = String::from("tic");
     let s2 = String::from("tac");
     let s3 = String::from("toe");
     let s = format!("{}-{}-{}", s1, s2, s3);
+
+
+
+
+
+
+
+
+
+
 
 
     // Indexing into Strings (=> a bad idea)
@@ -123,6 +147,12 @@ fn main() {
     // You should use ranges to create string slices with caution, because doing so can crash your program.
 
 
+
+
+
+
+
+
     // Methods for iterating over Strings
     // chars(), bytes()
 
@@ -139,6 +169,9 @@ fn main() {
     // ^^^ Hindi word in Devanagari script
 
 
+
+
+
     for b in "नमस्ते".bytes() {
         println!("{}", b);
     }
@@ -149,7 +182,9 @@ fn main() {
     // 165
     // 135
 
-    // Summary
+
+    // Summary (from the rust book)
+    // ============================
     // To summarize, strings are complicated.
     // Different programming languages make different choices about how to present this complexity to the programmer.
     // Rust has chosen to make the correct handling of String data the default behavior for all Rust programs,

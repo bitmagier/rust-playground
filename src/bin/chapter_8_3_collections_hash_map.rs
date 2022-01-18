@@ -12,6 +12,7 @@ fn main() {
         let mut m = HashMap::new();
         m.insert(String::from("A"), 123);
         m.insert(String::from("B"), 42);
+
         for v in m.values().filter(|&&e| e == 42) {
             println!("{}", v)
         }
@@ -23,13 +24,17 @@ fn main() {
         let teams = vec![String::from("Blue"), String::from("Yellow")];
         let initial_scores = vec![10, 50];
 
-        let mut map: HashMap<_, _> =
+        let map: HashMap<_, _> =
             teams.into_iter().zip(initial_scores.into_iter()).collect();
     }
 
 
     // getter
     {
+        let mut map = HashMap::new();
+        map.insert(String::from("A"), 123);
+        map.insert(String::from("B"), 42);
+
         let v = map.get("B");
 
         let b = String::from("B");
@@ -37,18 +42,18 @@ fn main() {
 
         let v = map.get_mut("B"); // gets a mutable reference to the value corresponding to the key
         let kv: Option<(_, _)> = map.get_key_value("B");
-    }
 
-    // remove
-    {
+
+        // remove
         let v = map.remove("A");
         let kv: Option<(_, _)> = map.remove_entry("A");
 
-        map.clear();
-    }
 
-    map.len();
-    map.is_empty();
+        map.clear();
+
+        map.len();
+        map.is_empty();
+    }
 
 
     // iterators
@@ -56,8 +61,9 @@ fn main() {
     {
         let map: HashMap<String, usize> = HashMap::new();
         map.iter();
-        map.into_iter(); // consuming iterator in arbitrary order
+        map.into_iter(); // consuming iterator
     }
+
 
     {
         let mut map: HashMap<String, usize> = HashMap::new();
@@ -65,17 +71,16 @@ fn main() {
     }
 
 
-
     // consuming iterators
     {
         let map: HashMap<String, usize> = HashMap::new();
         map.keys(); // iterator over keys
-        map.into_keys(); // consuming iterator over all keys
+        map.into_keys(); // consuming iterator
     }
     {
         let map: HashMap<String, usize> = HashMap::new();
         map.values(); // iterator over values
-        map.into_values(); // consuming iterator over all values
+        map.into_values(); // consuming iterator
     }
 
 
@@ -84,7 +89,6 @@ fn main() {
         let mut map: HashMap<String, usize> = HashMap::new();
         map.retain(|k, v| k.starts_with("A")); // retains only the elements specified by the predicate
     }
-
 
 
 
@@ -106,6 +110,7 @@ fn main() {
 
 
 
+
     // iterate over key/value pairs
     {
         let mut scores = HashMap::new();
@@ -117,10 +122,14 @@ fn main() {
         }
 
 
+
         // common use case:
-        // only inserting a value if the key has no value, using the entry API
+        // only inserting a value if the key has no value, using the entry-API
         scores.entry(String::from("Red")).or_insert(90);
     }
+
+
+
 
 
     // updating a value based on the old value
@@ -133,6 +142,10 @@ fn main() {
     }
 
 
+
+
+
     // Hashing Function: SipHash: not the fastest hashing algorithm available, but providing
     // resistance to DoS attacks involving hash tables
 }
+
